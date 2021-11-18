@@ -117,7 +117,7 @@
 		var Right_Y_positive_angle, Left_Y_positive_angle;
 		var mousePosition = new THREE.Vector2();
 		var camera_num;
-		var eye_index = 0;
+		var eye_id = 0;
 		var rotation_angle_X = [[-10.4, 8.6], [-13, 17.5], [-17, 15]]
 		var rotation_angle_Y = [[-7.7, 13], [-11.5, 16], [-10.5, 20.5]]
 
@@ -284,10 +284,10 @@
 			switch (event.which) {
 				// press 1
 				case 49:
-					eye_index = (eye_index + 8 - 1) % 8;
+				eye_id = (eye_id + 8 - 1) % 8;
 					break;
 				case 50:
-					eye_index = (eye_index + 1) % 8;
+				eye_id = (eye_id + 1) % 8;
 					break;
 				// press a --> previous
 				case 65:
@@ -318,7 +318,7 @@
 					break;
 				// q
 				case 81:
-					switch (eye_index) {
+					switch (eye_id) {
 						case 0:
 							Left_X_negative_angle = Right_X_negative_angle;
 							break;
@@ -557,7 +557,7 @@
 				iris_rotation_x = degree * Math.PI / 180;
 			}
 
-			switch (eye_index) {
+			switch (eye_id) {
 
 				case 0:
 					Right_X_negative_angle = iris_rotation_x;
@@ -594,7 +594,7 @@
 				iris_rotation_y = degree * Math.PI / 180;
 			}
 
-			switch (eye_index) {
+			switch (eye_id) {
 				case 4:
 					Right_Y_negative_angle = iris_rotation_y;
 					break;
@@ -728,8 +728,8 @@
 		}
 
 		function render1() {
-			eye_pos_update(eye_index);
-			if (eye_index % 2 === 0) {
+			eye_pos_update(eye_id);
+			if (eye_id % 2 === 0) {
 				draw_line_L();
 			}
 			else {
@@ -746,14 +746,14 @@
 			mesh.skeleton.bones[eye_index[MMD_id][0]].rotation.y = 0;
 			mesh.skeleton.bones[eye_index[MMD_id][1]].rotation.x = Left_X_negative_angle;
 			mesh.skeleton.bones[eye_index[MMD_id][1]].rotation.y = 0;
-			if (eye_index === 0) {
+			if (eye_id === 0) {
 				draw_line_L();
 			}
-			if (eye_index === 1) {
+			if (eye_id === 1) {
 				draw_line_R();
 			}
 			effect.render(scene, camera2);
-			if (eye_index === 0 | eye_index === 1) {
+			if (eye_id === 0 | eye_id === 1) {
 				remover();
 			}
 		}
@@ -764,14 +764,14 @@
 			mesh.skeleton.bones[eye_index[MMD_id][0]].rotation.y = 0;
 			mesh.skeleton.bones[eye_index[MMD_id][1]].rotation.x = Left_X_positive_angle;
 			mesh.skeleton.bones[eye_index[MMD_id][1]].rotation.y = 0;
-			if (eye_index === 2) {
+			if (eye_id === 2) {
 				draw_line_L();
 			}
-			if (eye_index === 3) {
+			if (eye_id === 3) {
 				draw_line_R();
 			}
 			effect.render(scene, camera3);
-			if (eye_index === 2 | eye_index === 3) {
+			if (eye_id === 2 | eye_id === 3) {
 				remover();
 			}
 		}
@@ -782,14 +782,14 @@
 			mesh.skeleton.bones[eye_index[MMD_id][0]].rotation.y = Right_Y_negative_angle;
 			mesh.skeleton.bones[eye_index[MMD_id][1]].rotation.x = 0;
 			mesh.skeleton.bones[eye_index[MMD_id][1]].rotation.y = Left_Y_negative_angle;
-			if (eye_index === 4) {
+			if (eye_id === 4) {
 				draw_line_L();
 			}
-			if (eye_index === 5) {
+			if (eye_id === 5) {
 				draw_line_R();
 			}
 			effect.render(scene, camera4);
-			if (eye_index === 4 | eye_index === 5) {
+			if (eye_id === 4 | eye_id === 5) {
 				remover();
 			}
 		}
@@ -800,14 +800,14 @@
 			mesh.skeleton.bones[eye_index[MMD_id][0]].rotation.y = Right_Y_positive_angle;
 			mesh.skeleton.bones[eye_index[MMD_id][1]].rotation.x = 0;
 			mesh.skeleton.bones[eye_index[MMD_id][1]].rotation.y = Left_Y_positive_angle;
-			if (eye_index === 6) {
+			if (eye_id === 6) {
 				draw_line_L();
 			}
-			if (eye_index === 7) {
+			if (eye_id === 7) {
 				draw_line_R();
 			}
 			effect.render(scene, camera5);
-			if (eye_index === 6 | eye_index === 7) {
+			if (eye_id === 6 | eye_id === 7) {
 				remover();
 			}
 		}
